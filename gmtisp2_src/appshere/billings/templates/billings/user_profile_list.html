@@ -1,0 +1,37 @@
+{% extends "./layout.html" %}
+{% load i18n %}
+
+{% block title %} {{ block.super }} | User Orders {% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            {% if request.user.is_superuser %}<th>User</th>{% endif %}
+            <th>Plan</th>
+            <th>Created</th>
+            <th>State</th>
+            <th>End Time</th>
+            <th>Organization</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user_profile in user_profiles %}
+            <tr>
+                {% if request.user.is_superuser %}<td>{{ user_profile.user.username }}</td>{% endif %}
+                <td>{{ user_profile.profile.name_for_users }}</td>
+                <td>{{ user_profile.created }}</td>
+                <td>{{ user_profile.get_state }}</td>
+                <td>{{ user_profile.end_time }}</td>
+                <td>{{ user_profile.organization.slug }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No user profiles found.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+

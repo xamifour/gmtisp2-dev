@@ -1,0 +1,7 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+    {{ block.super }}
+    <h2>Quick Links</h2>
+    <p>{{ dashboard_link|safe }}</p>
+{% endblock %}

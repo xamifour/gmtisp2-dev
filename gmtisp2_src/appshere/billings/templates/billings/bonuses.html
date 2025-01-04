@@ -1,0 +1,19 @@
+{% extends "usermanager/layout.html" %}
+{% load i18n %}
+
+{% block title %} {{ block.super }} | Bonus List {% endblock %}
+
+{% if user.bonuses.all %}
+    <ul>
+    {% for bonus in user.bonuses.all %}
+        <li>
+            Bonus Type: {{ bonus.bonus_type }}<br>
+            Amount: {{ bonus.amount }}<br>
+            Expiry Date: {{ bonus.expiration_date }}<br>
+            Status: {% if bonus.is_active %} Active {% else %} Expired {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No bonuses assigned.</p>
+{% endif %}

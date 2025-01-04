@@ -1,0 +1,10 @@
+{# templates/admin/clear_cache.html #}
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+<h2>Clear Cache</h2>
+<form action="{% url 'admin:clear_cache' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Clear Cache</button>
+</form>
+{% endblock %}

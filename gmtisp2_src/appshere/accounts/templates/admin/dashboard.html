@@ -1,0 +1,17 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+    {{ block.super }}
+
+    <h1>Dashboard Metrics</h1>
+<ul>
+    <li>Organizations Count: {{ organizations_count }}</li>
+    <li>Users Count: {{ users_count }}</li>
+    <li>User Usages Count: {{ user_usages_count }}</li>
+    <li>Profiles Count: {{ profiles_count }}</li>
+    <li>Payments Count: {{ payments_count }}</li>
+    <li>Sessions Count: {{ sessions_count }}</li>
+</ul>
+
+ 
+{% endblock %}

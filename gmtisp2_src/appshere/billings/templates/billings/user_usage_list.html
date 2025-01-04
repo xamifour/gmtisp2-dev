@@ -1,0 +1,47 @@
+{% extends "./layout.html" %}
+{% load i18n %}
+
+{% block title %} {{ block.super }} | User Usage {% endblock %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="table-responsive">
+    <table b/order="1" class="table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Active Sessions</th>
+                <th>Active Sub-Sessions</th>
+                <th>Total Download</th>
+                <th>Total Upload</th>
+                <th>Total Traffic</th>
+                <th>Total Uptime</th>
+                <th>Attributes Details</th>
+                <th>Created At</th>
+                <th>Organization</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usage in user_usages %}
+                <tr>
+                    <td>{{ usage.user_id | truncatechars:9 }}</td>
+                    <td>{{ usage.active_sessions }}</td>
+                    <td>{{ usage.active_sub_sessions }}</td>
+                    <td>{{ usage.formatted_user_download }}</td>
+                    <td>{{ usage.formatted_user_upload }}</td>
+                    <td>{{ usage.formatted_user_traffic }}</td>
+                    <td>{{ usage.total_uptime }}</td>
+                    <td>{{ usage.attributes_details }}</td>
+                    <td>{{ usage.created }}</td>
+                    <td>{{ usage.organization.slug }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8">No user usage data available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

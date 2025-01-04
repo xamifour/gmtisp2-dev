@@ -1,0 +1,49 @@
+{% extends "layouts/auth_default.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block title %} {{ block.super }} | Login {% endblock %}
+
+
+{% block content %}
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="h3 mb-3 font-weight-semibold">Sign in</h2>
+    </div>
+    <div class="col-md-6">
+      <form method="post" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <!-- {{ form.as_p }} -->
+        {% include "partials/form_template.html" with field=field %}
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign in">
+      </form>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a href="{% url 'account_reset_password' %}"><small>Forgot password?</small></a>
+        </div>
+        <div class="col-6 text-right">
+          <a href="{# url 'account_signup' #}"><small>Create new account</small></a>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center text-center pt-5">
+        <hr class="w-100">
+        <div class="px-3 w-100 text-nowrap font-weight-semibold">Or sign in using</div>
+        <hr class="w-100">
+      </div>
+
+      <div class="text-center pt-4">
+        <a class="social-btn sb-facebook mx-2 mb-3" href="" data-toggle="tooltip" title="Facebook"><i class="flaticon-facebook"></i></a>
+        <a class="social-btn sb-google-plus mx-2 mb-3" href="{# provider_login_url 'google' #}" data-toggle="tooltip" title="Google"><i class="flaticon-google-plus"></i></a>
+        <a class="social-btn sb-twitter mx-2 mb-3" href="#" data-toggle="tooltip" title="Twitter"><i class="flaticon-twitter"></i></a>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

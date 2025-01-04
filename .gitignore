@@ -1,0 +1,44 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+vgmt/
+
+# Django migrations
+# */migrations/
+# migrations/
+# preserving only the migrations folder and the __init__.py file.
+*/migrations/*
+!*/migrations/__init__.py
+
+# Database files
+db.sqlite3
+*.sqlite3
+
+# Log files
+*.log
+
+# Static and media files
+/static/
+/media/
+/staticfiles/
+
+# IDE or editor folders
+.vscode/
+.idea/
+
+# System files (macOS, Windows, etc.)
+.DS_Store
+Thumbs.db
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
